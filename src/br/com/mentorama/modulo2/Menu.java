@@ -1,4 +1,4 @@
-package br.com.mentorama;
+package br.com.mentorama.modulo2;
 
 import java.util.Scanner;
 
