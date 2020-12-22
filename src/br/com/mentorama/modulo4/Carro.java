@@ -4,20 +4,33 @@ public class Carro {
 	public static final String VERMELHO = "vermelho";
 	public static final String PRETA = "preta";
 
+	private Integer quantidadePortas;
 	private Integer quantidadePneus;
 	private Integer quantidadeCalotas;
 	private Integer quantidadeParafusosPneu;
-	private String potenciaMotor;
+	private String numChassi;
 	private String fabricante;
 	private String modelo;
 	private Integer anoDeFabricacao;
+	private String tipoDeCombustivel;
+	private String corDoVeiculo;
 
-	public Carro(Integer quantidadePneus,String modelo,String fabricante,Integer anoDeFabricacao,String potenciaMotor) {
-		setQuantidadePneus(quantidadePneus);
+	public Carro(Integer quantidadePortas, String modelo, String fabricante, Integer anoDeFabricacao, String numChassi,
+			String tipoDeCombustivel) {
+		setQuantidadePortas(quantidadePortas);
 		setModelo(modelo);
 		setFabricante(fabricante);
 		setAnoDeFabricacao(anoDeFabricacao);
-		setPotenciaMotor(potenciaMotor);
+		setNumChassi(numChassi);
+		setTipoDeCombustivel(tipoDeCombustivel);
+	}
+
+	private void setQuantidadePortas(Integer quantidadePortas) {
+		this.quantidadePortas = quantidadePortas;
+	}
+
+	private Integer getQuantidadePortas() {
+		return quantidadePortas;
 	}
 
 	public Integer getQuantidadePneus() {
@@ -46,16 +59,12 @@ public class Carro {
 		this.quantidadeParafusosPneu = quantidadeParafusosPneu;
 	}
 
-	public void setCor(String cor) {
-		System.out.println(cor);
+	public String getNumChassi() {
+		return numChassi;
 	}
 
-	public String getPotenciaMotor() {
-		return potenciaMotor;
-	}
-
-	public void setPotenciaMotor(String potenciaMotor) {
-		this.potenciaMotor = potenciaMotor;
+	public void setNumChassi(String numChassi) {
+		this.numChassi = numChassi;
 	}
 
 	public String getFabricante() {
@@ -82,13 +91,29 @@ public class Carro {
 		this.anoDeFabricacao = anoDeFabricação;
 	}
 
+	public String getTipoDeCombustivel() {
+		return tipoDeCombustivel;
+	}
+
+	public void setTipoDeCombustivel(String tipoDeCombustivel) {
+		this.tipoDeCombustivel = tipoDeCombustivel;
+	}
+
+	public String getCorDoVeiculo() {
+		return corDoVeiculo;
+	}
+
+	public void setCorDoVeiculo(String corDoVeiculo) {
+		this.corDoVeiculo = corDoVeiculo;
+	}
+
 	public void imprimeValores() {
-		System.out.println("Quantidade Pneus:" + " = " + getQuantidadePneus());
-		System.out.println("Quantidade de Calotas:" + " = " + getQuantidadeCalotas());
-		System.out.println("Quantidade de Parafusos:" + " = " + getQuantidadeParafusosPneu());
-		System.out.println("Modelo:" + " = " +     getModelo());
+		System.out.println("Quantidade Portas:" + " = " + getQuantidadePortas());
+		System.out.println("Cor do veículo :" + " = " + getCorDoVeiculo());
+		System.out.println("Numero do Chassi:" + " = " + getNumChassi());
+		System.out.println("Modelo:" + " = " + getModelo());
 		System.out.println("Fabricante:" + " = " + getFabricante());
-		System.out.println("Ano:" + " = " +        getAnoDeFabricação());
-		System.out.println("Motor:" + " = " +      getPotenciaMotor() );
+		System.out.println("Ano:" + " = " + getAnoDeFabricação());
+		System.out.println("Combustivel:" + " = " + getTipoDeCombustivel());
 	}
 }
