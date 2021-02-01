@@ -17,8 +17,7 @@ public class Solution8_1 {
 			Integer phone = in.nextInt();
 			bookPhone.put(name, phone);
 		}
-		
-				
+						
 		 while(in.hasNext()){
 	            String s = in.next();
 	            String verificaElemento=in.nextLine();
