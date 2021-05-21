@@ -1,6 +1,6 @@
 package br.com.mentorama.modulo7;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements Tributavel  {
 	private double chequeEspecial;
 
 	public ContaCorrente(long numero, int agencia, String banco, double saldo, double chequeEspecial) {
@@ -32,6 +32,12 @@ public class ContaCorrente extends Conta {
 	@Override
 	public String toString() {
 		return "ContaCorrente [" + "chequeEspecial=" + chequeEspecial + "]";
+	}
+	
+	@Override
+	public double getValorImposto() {
+		saldo*=0.01;
+		return saldo  ;
 	}
 
 }
