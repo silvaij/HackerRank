@@ -7,7 +7,8 @@ public abstract class Foo {
 	// Maps String key to corresponding Class object
 	private static Map implementations = null;
     static Foo DefaultFoo;
-	// Initializes implementations map the first time it's called
+
+    // Initializes implementations map the first time it's called
 	private static synchronized void initMapIfNecessary() {
 		if (implementations == null) {
 			implementations = new HashMap();

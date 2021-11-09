@@ -83,12 +83,12 @@ public class Carro {
 		this.modelo = modelo;
 	}
 
-	public Integer getAnoDeFabricação() {
+	public Integer getAnoDeFabricacao() {
 		return anoDeFabricacao;
 	}
 
-	public void setAnoDeFabricacao(Integer anoDeFabricação) {
-		this.anoDeFabricacao = anoDeFabricação;
+	public void setAnoDeFabricacao(Integer anoDeFabricacao) {
+		this.anoDeFabricacao = anoDeFabricacao;
 	}
 
 	public String getTipoDeCombustivel() {
@@ -109,11 +109,11 @@ public class Carro {
 
 	public void imprimeValores() {
 		System.out.println("Quantidade Portas:" + " = " + getQuantidadePortas());
-		System.out.println("Cor do veículo :" + " = " + getCorDoVeiculo());
+		System.out.println("Cor do veï¿½culo :" + " = " + getCorDoVeiculo());
 		System.out.println("Numero do Chassi:" + " = " + getNumChassi());
 		System.out.println("Modelo:" + " = " + getModelo());
 		System.out.println("Fabricante:" + " = " + getFabricante());
-		System.out.println("Ano:" + " = " + getAnoDeFabricação());
+		System.out.println("Ano:" + " = " + getAnoDeFabricacao());
 		System.out.println("Combustivel:" + " = " + getTipoDeCombustivel());
 	}
 }
