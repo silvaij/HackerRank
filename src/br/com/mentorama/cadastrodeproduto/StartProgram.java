@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import br.com.mentorama.cadastrodeproduto.db.EstoqueDB;
 import br.com.mentorama.cadastrodeproduto.db.PedidoVendaDB;
@@ -23,6 +22,7 @@ public class StartProgram {
     static UsuarioDB  usuariosDB = new UsuarioDB();
     static EstoqueDB  estoquesDB = new EstoqueDB();
     static PedidoVendaDB pedidoVendaDB = new PedidoVendaDB();
+	static Produto novoProduto ;
 
 
 	public static void main(String[] args) throws Exception {
@@ -30,7 +30,7 @@ public class StartProgram {
 		String option;
 
 		do {
-			System.out.println(" <-----PEDIDO DE VENDAS----->");
+			System.out.println(" -----** MENU INICIAL **-----");
 			System.out.println(" 1 - Cadastrar produto");
 			System.out.println(" 2 - Listar produtos do estoque");
 			System.out.println(" 3 - Cadastrar usuario ADMINISTRADOR");
@@ -79,7 +79,7 @@ public class StartProgram {
 
 				LocalDate dataValidade = converteEmData(dataString);
 
-			    Produto novoProduto = new Produto(descricao,preco,dataValidade);
+				novoProduto = new Produto(descricao,preco,dataValidade);
 			    produtosDB.addNovoProduto(novoProduto);
 
 			     break;
@@ -128,21 +128,22 @@ public class StartProgram {
 				System.out.println("-----CADASTRANDO ESTOQUE DE PRODUTO-------");
 				System.out.println("------------------------------------------");
 
-				System.out.println(" Qual o IDENTIFICADOR do estoque a ser cadastrado Ex:'CelEstoque'? ");
-				String id = input.readLine();
+				System.out.println("Informe o 'ID' do estoque exemplo:'Estoque Notebook' ");
+				String idEstoque = input.readLine();
 
 				System.out.println(" Agora informe o (ID DO PRODUTO)  a ser adicionado ao estoque: ");
-				Integer produtoId = Integer.parseInt(input.readLine());
+				String produtoId = input.readLine();
 
-				Produto produto = produtosDB.getProdutoPorId(produtoId);
-				System.out.println("PRODUTO ID: " + produto.getId());
-				System.out.println("PRODUTO DESCRICAO: " + produto.getDescricao());
-				System.out.println("PRODUTO VALIDADE: " + produto.getDataValidade());
+				produtosDB.getProdutoPorId(produtoId);
+				System.out.println("PRODUTO ID: " + produtosDB.getProdutoPorId(produtoId));
+				System.out.println("PRODUTO DESCRICAO: " + produtosDB.getProdutoPorId(produtoId).getDescricao());
+				System.out.println("PRODUTO VALIDADE: " + produtosDB.getProdutoPorId(produtoId).getDataValidade());
 
 				System.out.println(" Quantidade de produtos a ser adicionado ao estoque:  ");
 				Integer quantidade = Integer.parseInt(input.readLine());
 
-                Estoque novoEstoque = new Estoque(id,produto,quantidade);
+                
+				Estoque novoEstoque = new Estoque(idEstoque,produtosDB.getProdutoPorId(produtoId),quantidade);
                 estoquesDB.addNovoEstoque(novoEstoque);
 				break;
 			}
@@ -173,19 +174,19 @@ public class StartProgram {
 				System.out.println("TIPO: "+cliente.getTipoUsuario());
 				System.out.println("----------------------------------------------");
 
-				System.out.println("Informe o ID do produto");
-				int idProduto = Integer.parseInt(input.readLine());
+				System.out.println("Informe o identificador do estoque");
+				String idEstoque = input.readLine();
 
-				Produto produto = produtosDB.getProdutoPorId(idProduto);
-				System.out.println("ID: "+produto.getId());
-				System.out.println("NOME: "+produto.getDescricao());
-				System.out.println("VALIDADE: "+produto.getDataValidade());
+				Estoque estoque = estoquesDB.getEstoqueById(idEstoque);
+				System.out.println("ESTOQUE ID: "+estoque.getId());
+				System.out.println("PRODUTO DESCRIÇÃO "+estoque.getProoduto().getDescricao());
+				System.out.println("PRODUTO VALIDADE: "+estoque.getProoduto().getDataValidade());
 				System.out.println("----------------------------------------------");
 
 				System.out.println("Quantidade ? : ");
 				int pedidoQuantidade = Integer.parseInt(input.readLine());
 
-				PedidoVenda novoPedido = new PedidoVenda(cliente,produto,pedidoQuantidade);
+				PedidoVenda novoPedido = new PedidoVenda(cliente,estoque,pedidoQuantidade);
 				pedidoVendaDB.addNovoPedidoVenda(novoPedido);
 				break;
 
@@ -198,9 +199,9 @@ public class StartProgram {
 				for (PedidoVenda pedidoVenda : pedidoVendaDB.getPedidoVendaList()) {
 					System.out.println("ID: " + pedidoVenda.getId());
 					System.out.println("CLIENTE: " + pedidoVenda.getCliente().getNome());
-					System.out.println("PRODUTO: " + pedidoVenda.getProduto().getDescricao() );
+					System.out.println("PRODUTO: " + pedidoVenda.getEstoque().getProoduto().getDescricao());
 					System.out.println("QUANTIDADE: " + pedidoVenda.getQuantidade());
-					System.out.println("VALOR TOTAL: " + pedidoVenda.getValorTotal());
+					System.out.println("VALOR TOTAL: " + pedidoVenda.getValorTotalN());
 				}
 				break;
 			}

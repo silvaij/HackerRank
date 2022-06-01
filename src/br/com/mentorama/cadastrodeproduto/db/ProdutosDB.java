@@ -8,23 +8,24 @@ import java.util.Map;
 import br.com.mentorama.cadastrodeproduto.models.Produto;
 
 public class ProdutosDB {
-     private Map<Integer,Produto> produtosMap = new HashMap<>();
+     private Map<String,Produto> produtosDBMap = new HashMap<>();
 
      public List<Produto> getProdutosList(){
         List<Produto> produtosList = new ArrayList<>();
-         for ( Map.Entry<Integer,Produto> produto : produtosMap.entrySet()) {
+         for ( Map.Entry<String,Produto> produto : produtosDBMap.entrySet()) {
                produtosList.add(produto.getValue());
          }
          return produtosList;
      }
      
      public void addNovoProduto(Produto produto) {
-    	 int id = produtosMap.size()+1;
-    	 produto.setId(id);
-         produtosMap.put(id, produto);
+    	 String id = String.valueOf(produtosDBMap.size()+1);
+         produto.setId(Integer.parseInt(id));
+         produtosDBMap.put(id, produto);
      }
 
-     public Produto getProdutoPorId(Integer id){
-         return produtosMap.get(id);
+     public Produto getProdutoPorId(String id){
+    	 return produtosDBMap.get(id);
      }
+
 }

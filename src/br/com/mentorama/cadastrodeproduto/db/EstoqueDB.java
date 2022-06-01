@@ -27,4 +27,8 @@ public class EstoqueDB {
         }
         return estoquesList;
     }
+
+    public Estoque getEstoqueById(String id){
+        return estoqueDBMap.get(id);
+    }
 }
